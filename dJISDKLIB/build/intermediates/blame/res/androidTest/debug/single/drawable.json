@@ -1,0 +1,62 @@
+[
+    {
+        "merged": "/Users/abhishek/AndroidStudioProjects/Mobile-SDK-Android-master/CameraDemo/dJISDKLIB/build/intermediates/res/merged/androidTest/debug/drawable/btn_draw_starter.png",
+        "source": "/Users/abhishek/AndroidStudioProjects/Mobile-SDK-Android-master/CameraDemo/dJISDKLIB/build/intermediates/bundles/debug/res/drawable/btn_draw_starter.png"
+    },
+    {
+        "merged": "/Users/abhishek/AndroidStudioProjects/Mobile-SDK-Android-master/CameraDemo/dJISDKLIB/build/intermediates/res/merged/androidTest/debug/drawable/btn_draw_start_plane.png",
+        "source": "/Users/abhishek/AndroidStudioProjects/Mobile-SDK-Android-master/CameraDemo/dJISDKLIB/build/intermediates/bundles/debug/res/drawable/btn_draw_start_plane.png"
+    },
+    {
+        "merged": "/Users/abhishek/AndroidStudioProjects/Mobile-SDK-Android-master/CameraDemo/dJISDKLIB/build/intermediates/res/merged/androidTest/debug/drawable/indoorpointing_canpass.png",
+        "source": "/Users/abhishek/AndroidStudioProjects/Mobile-SDK-Android-master/CameraDemo/dJISDKLIB/build/intermediates/bundles/debug/res/drawable/indoorpointing_canpass.png"
+    },
+    {
+        "merged": "/Users/abhishek/AndroidStudioProjects/Mobile-SDK-Android-master/CameraDemo/dJISDKLIB/build/intermediates/res/merged/androidTest/debug/drawable/radio_unchecked.png",
+        "source": "/Users/abhishek/AndroidStudioProjects/Mobile-SDK-Android-master/CameraDemo/dJISDKLIB/build/intermediates/bundles/debug/res/drawable/radio_unchecked.png"
+    },
+    {
+        "merged": "/Users/abhishek/AndroidStudioProjects/Mobile-SDK-Android-master/CameraDemo/dJISDKLIB/build/intermediates/res/merged/androidTest/debug/drawable/btn_lock_selector.xml",
+        "source": "/Users/abhishek/AndroidStudioProjects/Mobile-SDK-Android-master/CameraDemo/dJISDKLIB/build/intermediates/bundles/debug/res/drawable/btn_lock_selector.xml"
+    },
+    {
+        "merged": "/Users/abhishek/AndroidStudioProjects/Mobile-SDK-Android-master/CameraDemo/dJISDKLIB/build/intermediates/res/merged/androidTest/debug/drawable/draw_route_pass.png",
+        "source": "/Users/abhishek/AndroidStudioProjects/Mobile-SDK-Android-master/CameraDemo/dJISDKLIB/build/intermediates/bundles/debug/res/drawable/draw_route_pass.png"
+    },
+    {
+        "merged": "/Users/abhishek/AndroidStudioProjects/Mobile-SDK-Android-master/CameraDemo/dJISDKLIB/build/intermediates/res/merged/androidTest/debug/drawable/indoorpointing_cannotpass.png",
+        "source": "/Users/abhishek/AndroidStudioProjects/Mobile-SDK-Android-master/CameraDemo/dJISDKLIB/build/intermediates/bundles/debug/res/drawable/indoorpointing_cannotpass.png"
+    },
+    {
+        "merged": "/Users/abhishek/AndroidStudioProjects/Mobile-SDK-Android-master/CameraDemo/dJISDKLIB/build/intermediates/res/merged/androidTest/debug/drawable/ic_launcher.png",
+        "source": "/Users/abhishek/AndroidStudioProjects/Mobile-SDK-Android-master/CameraDemo/dJISDKLIB/build/intermediates/bundles/debug/res/drawable/ic_launcher.png"
+    },
+    {
+        "merged": "/Users/abhishek/AndroidStudioProjects/Mobile-SDK-Android-master/CameraDemo/dJISDKLIB/build/intermediates/res/merged/androidTest/debug/drawable/btn_zoom_selector.xml",
+        "source": "/Users/abhishek/AndroidStudioProjects/Mobile-SDK-Android-master/CameraDemo/dJISDKLIB/build/intermediates/bundles/debug/res/drawable/btn_zoom_selector.xml"
+    },
+    {
+        "merged": "/Users/abhishek/AndroidStudioProjects/Mobile-SDK-Android-master/CameraDemo/dJISDKLIB/build/intermediates/res/merged/androidTest/debug/drawable/radio_checked.png",
+        "source": "/Users/abhishek/AndroidStudioProjects/Mobile-SDK-Android-master/CameraDemo/dJISDKLIB/build/intermediates/bundles/debug/res/drawable/radio_checked.png"
+    },
+    {
+        "merged": "/Users/abhishek/AndroidStudioProjects/Mobile-SDK-Android-master/CameraDemo/dJISDKLIB/build/intermediates/res/merged/androidTest/debug/drawable/draw_route.png",
+        "source": "/Users/abhishek/AndroidStudioProjects/Mobile-SDK-Android-master/CameraDemo/dJISDKLIB/build/intermediates/bundles/debug/res/drawable/draw_route.png"
+    },
+    {
+        "merged": "/Users/abhishek/AndroidStudioProjects/Mobile-SDK-Android-master/CameraDemo/dJISDKLIB/build/intermediates/res/merged/androidTest/debug/drawable/btn_radio_selector.xml",
+        "source": "/Users/abhishek/AndroidStudioProjects/Mobile-SDK-Android-master/CameraDemo/dJISDKLIB/build/intermediates/bundles/debug/res/drawable/btn_radio_selector.xml"
+    },
+    {
+        "merged": "/Users/abhishek/AndroidStudioProjects/Mobile-SDK-Android-master/CameraDemo/dJISDKLIB/build/intermediates/res/merged/androidTest/debug/drawable/draw_arrow.png",
+        "source": "/Users/abhishek/AndroidStudioProjects/Mobile-SDK-Android-master/CameraDemo/dJISDKLIB/build/intermediates/bundles/debug/res/drawable/draw_arrow.png"
+    },
+    {
+        "merged": "/Users/abhishek/AndroidStudioProjects/Mobile-SDK-Android-master/CameraDemo/dJISDKLIB/build/intermediates/res/merged/androidTest/debug/drawable/btn_draw_started.png",
+        "source": "/Users/abhishek/AndroidStudioProjects/Mobile-SDK-Android-master/CameraDemo/dJISDKLIB/build/intermediates/bundles/debug/res/drawable/btn_draw_started.png"
+    },
+    {
+        "merged": "/Users/abhishek/AndroidStudioProjects/Mobile-SDK-Android-master/CameraDemo/dJISDKLIB/build/intermediates/res/merged/androidTest/debug/drawable/btn_draw_end.png",
+        "source": "/Users/abhishek/AndroidStudioProjects/Mobile-SDK-Android-master/CameraDemo/dJISDKLIB/build/intermediates/bundles/debug/res/drawable/btn_draw_end.png"
+    }
+]
