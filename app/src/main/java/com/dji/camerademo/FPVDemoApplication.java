@@ -75,6 +75,9 @@ public class FPVDemoApplication extends Application {
         //This is used to start SDK services and initiate SDK.
         DJISDKManager.getInstance().registerApp(this, mDJISDKManagerCallback);
     }
+
+
+
     /**
      * When starting SDK services, an instance of interface DJISDKManager.SDKManagerCallback will be used to listen to
      * the SDK Registration result and the product changing.

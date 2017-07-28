@@ -23,4 +23,5 @@ dependencies {
     compile 'com.android.support:design:23.3.0'
     compile 'com.android.support:multidex:1.0.1'
     compile project(':dJISDKLIB')
+    compile 'com.google.android.gms:play-services-appindexing:8.4.0'
 }
