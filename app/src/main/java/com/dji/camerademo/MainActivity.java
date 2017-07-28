@@ -27,6 +27,8 @@ import dji.common.camera.SDCardState;
 import dji.common.camera.SettingsDefinitions;
 import dji.common.camera.SystemState;
 import dji.common.error.DJIError;
+import dji.common.flightcontroller.flyzone.FlyZoneDatabaseState;
+import dji.common.flightcontroller.flyzone.FlyZoneState;
 import dji.common.product.Model;
 import dji.common.util.CommonCallbacks;
 import dji.keysdk.CameraKey;
@@ -38,15 +40,17 @@ import dji.sdk.camera.Camera;
 import dji.sdk.camera.PlaybackManager;
 import dji.sdk.camera.VideoFeeder;
 import dji.sdk.codec.DJICodecManager;
+import dji.sdk.flightcontroller.FlyZoneManager;
 
 import static android.R.attr.lockTaskMode;
+import static android.R.attr.logo;
 import static android.R.attr.syncable;
 import static android.R.attr.value;
 import static dji.midware.media.d.n;
 
 public class MainActivity extends Activity implements TextureView.SurfaceTextureListener, View.OnClickListener {
     protected TextureView mVideoSurface = null;
-    private Button mCaptureBtn, mShootPhotoModeBtn, mRecordVideoModeBtn, mMediaPlayback;
+    private Button mCaptureBtn, mShootPhotoModeBtn, mRecordVideoModeBtn, mMediaPlayback, veriosn_check;
     private ToggleButton mRecordBtn;
     private TextView recordingTime, countView, timeView, available_space, total_space;
     protected DJICodecManager mCodecManager = null;
@@ -96,7 +100,7 @@ public class MainActivity extends Activity implements TextureView.SurfaceTexture
         initPreviewer();
 //        setFrameRate();
         sdStateCall();
-        firmwareVersionCheck();
+//        firmwareVersionCheck();
 
 
         DJIKey djiKeyForAvailableCount = CameraKey.create(CameraKey.SDCARD_AVAILABLE_CAPTURE_COUNT);
@@ -213,6 +217,7 @@ public class MainActivity extends Activity implements TextureView.SurfaceTexture
 
     private void initUI() {
         // init mVideoSurface
+        veriosn_check = (Button) findViewById(R.id.firm_verison);
         changeFileFormat = (Button) findViewById(R.id.change_image_format);
         changeVideoFormat = (Button) findViewById(R.id.change_record_format);
         available_space = (TextView) findViewById(R.id.available_space);
@@ -231,6 +236,7 @@ public class MainActivity extends Activity implements TextureView.SurfaceTexture
         if (null != mVideoSurface) {
             mVideoSurface.setSurfaceTextureListener(this);
         }
+        veriosn_check.setOnClickListener(this);
 
         mCaptureBtn.setOnClickListener(this);
         mRecordBtn.setOnClickListener(this);
@@ -327,6 +333,9 @@ public class MainActivity extends Activity implements TextureView.SurfaceTexture
                 break;
             case R.id.change_record_format:
                 setFrameRate();
+                break;
+            case R.id.firm_verison:
+                firmwareVersionCheck();
                 break;
             default:
                 break;
@@ -446,7 +455,55 @@ public class MainActivity extends Activity implements TextureView.SurfaceTexture
         String version;
         version= product.getFirmwarePackageVersion();
 
-        Log.d(TAG, "firmwareVersionCheck: "+ version);
+        FlyZoneManager flyzonemanager = FPVDemoApplication.getFlyzoneInstance();
+
+        Log.d(TAG, "firmwareVersionCheck: " + flyzonemanager);
+        flyzonemanager.setFlyZoneStateCallback(new FlyZoneState.Callback() {
+            @Override
+            public void onUpdate(@NonNull FlyZoneState flyZoneState) {
+                Log.d(TAG, "onUpdate: Flyzone state "+flyZoneState);
+
+            }
+        });
+
+        flyzonemanager.getDatabaseState(new CommonCallbacks.CompletionCallbackWith<FlyZoneDatabaseState>() {
+            @Override
+            public void onSuccess(FlyZoneDatabaseState flyZoneDatabaseState) {
+                if(flyZoneDatabaseState == FlyZoneDatabaseState.OUT_OF_DATE){
+                    Log.d(TAG, "onSuccess: database is out of date");
+                }
+                if(flyZoneDatabaseState == FlyZoneDatabaseState.UP_TO_DATE){
+                    Log.d(TAG, "onSuccess: database is upto date");
+                }
+                else {
+                    Log.d(TAG, "onSuccess: database is " + flyZoneDatabaseState);
+                }
+
+
+            }
+
+            @Override
+            public void onFailure(DJIError djiError) {
+                Log.d(TAG, "onFailure: in getDtabasestate"+djiError.getDescription());
+
+            }
+        });
+
+        flyzonemanager.getDatabaseVersion(new CommonCallbacks.CompletionCallbackWith<String>() {
+            @Override
+            public void onSuccess(String s) {
+                Log.d(TAG, "onSuccess: Database version "+s);
+
+            }
+
+            @Override
+            public void onFailure(DJIError djiError) {
+                Log.d(TAG, "onFailure: database version"+djiError.getDescription());
+
+            }
+        });
+
+//        Log.d(TAG, "firmwareVersionCheck: "+ version);
         Toast.makeText(MainActivity.this, "Displaying version " + version , Toast.LENGTH_LONG).show();
 
 

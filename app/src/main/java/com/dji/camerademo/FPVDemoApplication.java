@@ -16,6 +16,7 @@ import dji.keysdk.CameraKey;
 import dji.sdk.base.BaseComponent;
 import dji.sdk.base.BaseProduct;
 import dji.sdk.camera.Camera;
+import dji.sdk.flightcontroller.FlyZoneManager;
 import dji.sdk.products.Aircraft;
 import dji.sdk.products.HandHeld;
 import dji.sdk.remotecontroller.RemoteController;
@@ -30,7 +31,9 @@ public class FPVDemoApplication extends Application {
     private static final String TAG = MainActivity.class.getName();
     public static final String FLAG_CONNECTION_CHANGE = "dji_sdk_connection_change";
     private static BaseProduct mProduct;
+    private static FlyZoneManager flyZoneManager;
     private static BaseComponent mComponent;
+    private static Aircraft aircraft;
     private Handler mHandler;
     private Button login_button,logout_button,setListeners;
     private CheckBox c1_click,c2_click,c1_double_click,c2_double_click, c1_long_click,c2_long_click,both_c1_c2_click;
@@ -44,9 +47,19 @@ public class FPVDemoApplication extends Application {
     public static synchronized BaseProduct getProductInstance() {
         if (null == mProduct) {
             mProduct = DJISDKManager.getInstance().getProduct();
+
         }
         return mProduct;
     }
+
+//    public static synchronized Aircraft getAircraftInstance() {
+//        if (null == aircraft) {
+//            aircraft = DJISDKManager.getInstance().`;
+//
+//        }
+//        return mProduct;
+//    }
+
     public static synchronized Camera getCameraInstance() {
 
         if (getProductInstance() == null) return null;
@@ -62,6 +75,15 @@ public class FPVDemoApplication extends Application {
 
         return camera;
     }
+
+    public static synchronized FlyZoneManager getFlyzoneInstance(){
+        if(flyZoneManager==null){
+            flyZoneManager = DJISDKManager.getInstance().getFlyZoneManager();
+        }
+
+        return flyZoneManager;
+    }
+
 //    public static synchronized CameraKey getCameraKeyInstance() {
 //        CameraKey cameraKey = null;
 //
