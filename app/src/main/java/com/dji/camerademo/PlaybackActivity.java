@@ -1,5 +1,6 @@
 package com.dji.camerademo;
 
+import android.content.Intent;
 import android.drm.DrmStore;
 import android.graphics.SurfaceTexture;
 import android.os.Bundle;
@@ -17,6 +18,7 @@ import android.widget.Toast;
 
 import java.security.PrivateKey;
 
+import dji.common.battery.AggregationState;
 import dji.common.camera.SDCardState;
 import dji.common.camera.SettingsDefinitions;
 import dji.common.error.DJIError;
@@ -36,6 +38,8 @@ import dji.sdk.camera.PlaybackManager;
 import dji.sdk.camera.VideoFeeder;
 import dji.sdk.codec.DJICodecManager;
 
+import static android.R.attr.breadCrumbShortTitle;
+import static android.R.attr.cacheColorHint;
 import static android.R.attr.type;
 import static dji.midware.media.d.i;
 import static dji.midware.media.d.n;
@@ -43,11 +47,11 @@ import static dji.midware.media.d.n;
 public class PlaybackActivity extends AppCompatActivity implements View.OnClickListener,TextureView.SurfaceTextureListener {
 
 
-private Button back, next, previous, play_video, getCaptureCount;
+private Button back, next, previous, play_video, getCaptureCount, multi_preview, preview1, preview2, preview3, preview4, preview5, preview6, preview7, preview8;
     private TextView countView, isVideoText;
     private TextureView textureView=null;
     protected DJICodecManager mCodecManager = null;
-    private boolean isSinglePreview = true;
+    private boolean isSinglePreview = false;
     private PlaybackManager.PlaybackState mPlaybackState;
     private Camera mCamera;
     protected VideoFeeder.VideoDataCallback videoCallback = null;
@@ -65,6 +69,7 @@ private Button back, next, previous, play_video, getCaptureCount;
                 }
             }
         };
+
         startMediaPlayback();
     }
     private void showToast(String s){
@@ -118,6 +123,7 @@ private Button back, next, previous, play_video, getCaptureCount;
                 });
         Log.d("play",mCamera.getPlaybackManager().enterSinglePreviewModeWithIndex(0)+" ");
         mCamera.getPlaybackManager().enterSinglePreviewModeWithIndex(0);
+        isSinglePreview = true;
 
 
 
@@ -176,6 +182,16 @@ private Button back, next, previous, play_video, getCaptureCount;
 
     private void initUI(){
 //        countView = (TextView) findViewById(R.id.count_view);
+        preview1 = (Button) findViewById(R.id.previewButton1);
+        preview2 = (Button) findViewById(R.id.previewButton2);
+        preview3 = (Button) findViewById(R.id.previewButton3);
+        preview4 = (Button) findViewById(R.id.previewButton4);
+        preview5 = (Button) findViewById(R.id.previewButton5);
+        preview6 = (Button) findViewById(R.id.previewButton6);
+        preview7 = (Button) findViewById(R.id.previewButton7);
+        preview8 = (Button) findViewById(R.id.previewButton8);
+
+        multi_preview = (Button) findViewById(R.id.multiple_preview);
         isVideoText = (TextView) findViewById(R.id.is_video_check);
         back = (Button) findViewById(R.id.btn_camera_view);
         next = (Button) findViewById(R.id.btn_next);
@@ -186,6 +202,19 @@ private Button back, next, previous, play_video, getCaptureCount;
         back.setOnClickListener(this);
         next.setOnClickListener(this);
         previous.setOnClickListener(this);
+        multi_preview.setOnClickListener(this);
+
+
+        preview1.setOnClickListener(this);
+        preview2.setOnClickListener(this);
+        preview3.setOnClickListener(this);
+        preview4.setOnClickListener(this);
+        preview5.setOnClickListener(this);
+        preview6.setOnClickListener(this);
+        preview7.setOnClickListener(this);
+        preview8.setOnClickListener(this);
+
+
 
         if (null != textureView) {
             textureView.setSurfaceTextureListener(this);
@@ -198,21 +227,76 @@ private Button back, next, previous, play_video, getCaptureCount;
     public void onClick(View view){
         switch (view.getId()){
             case R.id.btn_next:
-                mCamera.getPlaybackManager().proceedToNextSinglePreviewPage();
+                if(!isSinglePreview){
+                    mCamera.getPlaybackManager().proceedToNextSinglePreviewPage();
+                }
+                else {
+                    mCamera.getPlaybackManager().proceedToNextMultiplePreviewPage();
+                }
                 break;
 
             case R.id.btn_previous:
-                mCamera.getPlaybackManager().proceedToPreviousSinglePreviewPage();
+                if(!isSinglePreview){
+                    mCamera.getPlaybackManager().proceedToPreviousSinglePreviewPage();
+                }
+                else {
+                    mCamera.getPlaybackManager().proceedToPreviousMultiplePreviewPage();
+                }
 
                 break;
             case R.id.btn_play_video:
                 mCamera.getPlaybackManager().playVideo();
+                break;
+
+            case R.id.multiple_preview:
+                mCamera.getPlaybackManager().enterMultiplePreviewMode();
+                isSinglePreview = false;
+                break;
+
+            case R.id.previewButton1:
+                previewAction(0);
+                break;
+
+            case R.id.previewButton2:
+                previewAction(1);
+                break;
+            case R.id.previewButton3:
+                previewAction(2);
+                break;
+            case R.id.previewButton4:
+                previewAction(3);
+                break;
+            case R.id.previewButton5:
+                previewAction(4);
+                break;
+            case R.id.previewButton6:
+                previewAction(5);
+                break;
+            case R.id.previewButton7:
+                previewAction(6);
+                break;
+            case R.id.previewButton8:
+                previewAction(7);
+                break;
+
+
 
             case R.id.btn_camera_view:
+                Intent intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
                 break;
 
         }
 
+    }
+
+
+    private void previewAction(int i){
+        if(mPlaybackState!=null && mCamera!=null){
+            if(mPlaybackState.getPlaybackMode().equals(SettingsDefinitions.PlaybackMode.MULTIPLE_MEDIA_FILE_PREVIEW)){
+                mCamera.getPlaybackManager().enterSinglePreviewModeWithIndex(i);
+            }
+        }
     }
 
     @Override

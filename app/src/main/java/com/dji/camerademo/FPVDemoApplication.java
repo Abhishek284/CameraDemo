@@ -10,12 +10,15 @@ import android.widget.CheckBox;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import dji.common.battery.AggregationState;
 import dji.common.error.DJIError;
 import dji.common.error.DJISDKError;
 import dji.keysdk.CameraKey;
 import dji.sdk.base.BaseComponent;
 import dji.sdk.base.BaseProduct;
+import dji.sdk.battery.Battery;
 import dji.sdk.camera.Camera;
+import dji.sdk.camera.MediaManager;
 import dji.sdk.flightcontroller.FlyZoneManager;
 import dji.sdk.products.Aircraft;
 import dji.sdk.products.HandHeld;
@@ -31,6 +34,7 @@ public class FPVDemoApplication extends Application {
     private static final String TAG = MainActivity.class.getName();
     public static final String FLAG_CONNECTION_CHANGE = "dji_sdk_connection_change";
     private static BaseProduct mProduct;
+    private static AggregationState aggregationStateNew;
     private static FlyZoneManager flyZoneManager;
     private static BaseComponent mComponent;
     private static Aircraft aircraft;
@@ -42,6 +46,9 @@ public class FPVDemoApplication extends Application {
     RemoteController remoteController ;
     private CheckBox checkBox;
     private ProgressBar progressBar;
+    private static Battery battery = null;
+    private MediaManager mediaManager;
+
 
 
     public static synchronized BaseProduct getProductInstance() {
@@ -60,6 +67,25 @@ public class FPVDemoApplication extends Application {
 //        return mProduct;
 //    }
 
+public static synchronized AggregationState getAggregationState(){
+    battery = getProductInstance().getBattery();
+
+     battery.setAggregationStateCallback(new AggregationState.Callback() {
+        @Override
+        public void onUpdate(AggregationState aggregationState) {
+            aggregationStateNew = aggregationState;
+        }
+    });
+
+    return aggregationStateNew;
+}
+
+    public static synchronized MediaManager getMediamMnager(){
+
+        return  getProductInstance().getCamera().getMediaManager();
+    }
+
+
     public static synchronized Camera getCameraInstance() {
 
         if (getProductInstance() == null) return null;
@@ -67,6 +93,7 @@ public class FPVDemoApplication extends Application {
         Camera camera = null;
 
         if (getProductInstance() instanceof Aircraft){
+
             camera = ((Aircraft) getProductInstance()).getCamera();
 
         } else if (getProductInstance() instanceof HandHeld) {

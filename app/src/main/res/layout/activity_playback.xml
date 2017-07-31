@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_centerHorizontal="true"
-        android:layout_above="@+id/linearLayout1"/>
+        android:layout_above="@+id/linearLayout2"/>
 
     <TextView
         android:layout_width="match_parent"
@@ -23,7 +23,82 @@
         android:visibility="gone"
         />
 
+    <Button
+        android:layout_width="150dp"
+        android:layout_height="75dp"
+        android:background="@android:color/transparent"
+        android:layout_marginTop="20dp"
+        android:id="@+id/previewButton1"/>
+    <Button
+        android:layout_width="150dp"
+        android:layout_height="75dp"
+        android:background="@android:color/transparent"
+        android:id="@+id/previewButton2"
+        android:layout_marginTop="20dp"
+        android:layout_toRightOf="@+id/previewButton1"/>
+    <Button
+        android:layout_width="150dp"
+        android:layout_height="75dp"
+        android:background="@android:color/transparent"
+        android:id="@+id/previewButton3"
+        android:layout_marginTop="20dp"
+        android:layout_toRightOf="@+id/previewButton2"/>
+    <Button
+        android:layout_width="150dp"
+        android:layout_height="75dp"
+        android:background="@android:color/transparent"
+        android:id="@+id/previewButton4"
+        android:layout_marginTop="20dp"
+        android:layout_toRightOf="@+id/previewButton3"/>
+    <Button
+        android:layout_width="150dp"
+        android:layout_height="75dp"
+        android:background="@android:color/transparent"
+        android:id="@+id/previewButton5"
+        android:layout_below="@+id/previewButton1"/>
+    <Button
+        android:layout_width="150dp"
+        android:layout_height="75dp"
+        android:background="@android:color/transparent"
+        android:id="@+id/previewButton6"
+        android:layout_toRightOf="@+id/previewButton5"
+        android:layout_below="@+id/previewButton2"/>
 
+    <Button
+        android:layout_width="150dp"
+        android:layout_height="75dp"
+        android:background="@android:color/transparent"
+        android:id="@+id/previewButton7"
+        android:layout_toRightOf="@+id/previewButton6"
+        android:layout_below="@+id/previewButton3"/>
+    <Button
+        android:layout_width="150dp"
+        android:layout_height="75dp"
+        android:background="@android:color/transparent"
+        android:id="@+id/previewButton8"
+        android:layout_toRightOf="@+id/previewButton7"
+        android:layout_below="@+id/previewButton4"/>
+
+
+
+
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/linearLayout2"
+        android:layout_above="@+id/linearLayout1">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="EnterMultiPreview"
+            android:id="@+id/multiple_preview"
+            />
+    </LinearLayout>
 
 
 
@@ -73,6 +148,8 @@
 
 
     </LinearLayout>
+
+
 
 
 </RelativeLayout>

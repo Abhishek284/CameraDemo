@@ -47,6 +47,7 @@ import static android.R.attr.logo;
 import static android.R.attr.syncable;
 import static android.R.attr.value;
 import static dji.midware.media.d.n;
+import static dji.sdksharedlib.keycatalog.c.dj;
 
 public class MainActivity extends Activity implements TextureView.SurfaceTextureListener, View.OnClickListener {
     protected TextureView mVideoSurface = null;
@@ -59,6 +60,7 @@ public class MainActivity extends Activity implements TextureView.SurfaceTexture
     private long count;
     private int timeLeft, hours, minutes, seconds, available_space_inMB, total_spac_inMB;
     private String timeString;
+    private String  camera_version;
     private  Button changeFileFormat,changeVideoFormat;
 
 
@@ -449,15 +451,32 @@ public class MainActivity extends Activity implements TextureView.SurfaceTexture
 
 
     }
+    private void fetchAllMediaFile(){
+
+    }
+
 
     private void firmwareVersionCheck(){
         BaseProduct product = FPVDemoApplication.getProductInstance();
-        String version;
-        version= product.getFirmwarePackageVersion();
+        String product_version;
+        mCamera.getFirmwareVersion(new CommonCallbacks.CompletionCallbackWith<String>() {
+            @Override
+            public void onSuccess(String s) {
+                camera_version =s;
+                Log.d(TAG, "onSuccess: camer_version "+camera_version);
+            }
+
+            @Override
+            public void onFailure(DJIError djiError) {
+                Log.d(TAG, "onFailure: camera_version "+ djiError.getDescription());
+
+            }
+        });
+        product_version= product.getFirmwarePackageVersion();
+        Log.d(TAG, "firmwareVersionCheck: "+product_version);
 
         FlyZoneManager flyzonemanager = FPVDemoApplication.getFlyzoneInstance();
 
-        Log.d(TAG, "firmwareVersionCheck: " + flyzonemanager);
         flyzonemanager.setFlyZoneStateCallback(new FlyZoneState.Callback() {
             @Override
             public void onUpdate(@NonNull FlyZoneState flyZoneState) {
@@ -504,7 +523,7 @@ public class MainActivity extends Activity implements TextureView.SurfaceTexture
         });
 
 //        Log.d(TAG, "firmwareVersionCheck: "+ version);
-        Toast.makeText(MainActivity.this, "Displaying version " + version , Toast.LENGTH_LONG).show();
+        Toast.makeText(MainActivity.this, "Displaying version " + product_version , Toast.LENGTH_LONG).show();
 
 
     }
@@ -525,6 +544,8 @@ public class MainActivity extends Activity implements TextureView.SurfaceTexture
                 camera.setSDCardStateCallBack(null);
             }
         });
+
+
 
 
 }
